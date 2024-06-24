@@ -1,4 +1,4 @@
-const maxDepth = 100;
+import { maxDepth } from '~/constants';
 
 function isSorted(arr: number[]) {
   const elementIsSorted = arr.map((x, i) => {
@@ -22,18 +22,14 @@ function bubble(arr: number[], depth: number): number[] {
 
 function _bubbleSort(input: WithHistory<number[]>, depth: number = 0): WithHistory<number[]> {
   if (depth >= maxDepth) throw new Error('Maximum depth reached.');
+  if (isSorted(input.value)) return ({value: input.value, history: input.history});
 
   const value = bubble(input.value, 0);
-
-  if (isSorted(value)) {
-    const history = input.history;
-    return ({value, history});
-  }
   const history = [...input.history, value];
 
   return _bubbleSort({value, history}, depth + 1);
 }
 
-export const bubbleSort: AlgorithmWithH<number[]> = (value: number[]): WithHistory<number[]> => {
-  return _bubbleSort({value, history: []});
+export function bubbleSort(src: number[]): WithHistory<number[]> {
+  return _bubbleSort({value: src, history: []});
 }
