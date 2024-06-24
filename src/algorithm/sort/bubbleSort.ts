@@ -34,6 +34,6 @@ function _bubbleSort(input: WithHistory<number[]>, depth: number = 0): WithHisto
   return _bubbleSort({value, history}, depth + 1);
 }
 
-export function bubbleSort(value: number[]): WithHistory<number[]> {
+export const bubbleSort: AlgorithmWithH<number[]> = (value: number[]): WithHistory<number[]> => {
   return _bubbleSort({value, history: []});
 }

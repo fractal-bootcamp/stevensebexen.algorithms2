@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { bubbleSort } from './bubbleSort';
 
-const algorithms: Record<string, (inputArray: number[]) => WithHistory<number[]>>  = {
+const algorithms: Record<string, AlgorithmWithH<number[]>>  = {
   'Bubble': bubbleSort
 };
 
