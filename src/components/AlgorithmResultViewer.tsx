@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function colorInterpolateLinear(color0: Color, color1: Color, fac: number): Color {
   const [red, green, blue] = Array(3).fill(0).map((_, i) => color0[i] * (1 - fac) + color1[i] * fac);
-  return [red, green, blue];
+  return [Math.round(red), Math.round(green), Math.round(blue)];
 }
 
 interface StepProps<T> {
