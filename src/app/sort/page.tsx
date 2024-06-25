@@ -11,7 +11,7 @@ import NavBar from "~/components/NavBar";
 
 const algorithms: Record<string, AlgorithmWithH<number[]>> = {
   'Bubble': bubbleSort,
-  'Insertion': selectionSort
+  'Selection': selectionSort
 }
 
 export default function Sort() {
