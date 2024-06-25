@@ -56,7 +56,6 @@ function _mergeSort(input: WithHistory<number[]>, depth: number = 0): WithHistor
   if (isSorted(input.value)) return ({value: input.value, history: input.history});
   
   const rootNode = createMergeNode(input.value);
-  console.log(rootNode);
   const value = rootNode.value;
   const history = generateHistory(rootNode);
 
