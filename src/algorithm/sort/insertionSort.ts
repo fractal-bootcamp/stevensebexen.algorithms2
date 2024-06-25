@@ -10,8 +10,6 @@ function _insertionSort(input: WithHistory<number[]>, depth: number): WithHistor
   const j1 = j0 === -1 ? depth : j0;
   const j = j1 > depth ? depth : j1; // Position to insert at
 
-  console.log(i, j, input.value);
-
   const arr0 = withDropped(input.value, i);
   const value = withInserted(arr0, j, input.value[i]);
   const history = [...input.history, value];
