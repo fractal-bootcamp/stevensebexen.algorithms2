@@ -1,13 +1,5 @@
 import { maxDepth } from '~/constants';
-
-function isSorted(arr: number[]) {
-  const elementIsSorted = arr.map((x, i) => {
-      if (arr[i+1] === undefined) return true;
-      return arr[i] <= arr[i+1];
-    })
-  const result = elementIsSorted.every(x => x === true);
-  return result;
-}
+import { isSorted } from './functions';
 
 function bubble(arr: number[], depth: number): number[] {
   if (depth >= arr.length - 1) return arr;
