@@ -3,12 +3,14 @@ import { bubbleSort } from './bubbleSort';
 import { selectionSort } from './selectionSort';
 import { insertionSort } from './insertionSort';
 import { mergeSort } from './mergeSort';
+import { quickSort } from './quickSort';
 
 const algorithms: Record<string, AlgorithmWithH<number[]>>  = {
   'Bubble': bubbleSort,
   'Selection': selectionSort,
   'Insertion': insertionSort,
-  'Merge': mergeSort
+  'Merge': mergeSort,
+  'Quicksort': quickSort
 };
 
 function testAlgorithms(name: string, input: number[], expected: number[]) {

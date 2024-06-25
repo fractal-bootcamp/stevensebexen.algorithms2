@@ -39,20 +39,20 @@ function merge(a: number[], b: number[], i: number = 0, j: number = 0, accumulat
   else return merge(a, b, i, j + 1, accumulator.concat(y));
 }
 
-function createMergeNode(arr: number[]): MergeNode {
+function createMergeNode(arr: number[], depth: number = 0): MergeNode {
+  if (depth >= maxDepth) throw new Error('Maximum recursion depth exceeded.');
   const m = Math.floor((arr.length + 1) / 2);
   const srcFirst = arr.slice(0, m);
   const srcSecond = arr.slice(m);
-  const first = srcFirst.length === 1 ? undefined : createMergeNode(srcFirst);
-  const second = srcSecond.length === 1 ? undefined : createMergeNode(srcSecond);
+  const first = srcFirst.length === 1 ? undefined : createMergeNode(srcFirst, depth + 1);
+  const second = srcSecond.length === 1 ? undefined : createMergeNode(srcSecond, depth + 1);
   // Merge either the sorted subarrays, or the single-element subarrays we temporarily created.
   const value = merge(first?.value || srcFirst, second?.value || srcSecond);
 
   return {value, first, second, srcFirst, srcSecond};
 }
 
-function _mergeSort(input: WithHistory<number[]>, depth: number = 0): WithHistory<number[]> {
-  if (depth >= maxDepth) throw new Error('Maximum recursion depth exceeded.');
+function _mergeSort(input: WithHistory<number[]>): WithHistory<number[]> {
   if (isSorted(input.value)) return ({value: input.value, history: input.history});
   
   const rootNode = createMergeNode(input.value);
