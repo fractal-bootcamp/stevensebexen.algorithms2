@@ -36,3 +36,12 @@ export function numberArrayParser(input: string): number[] {
   if (parsedInput.some(x => isNaN(x))) throw new Error('Failed to parse.');
   return parsedInput;
 }
+
+export function listSearchParser(input: string): ListSearchParams {
+  const split0: string[] = input.split(';').map(x => x.trim()).filter(x => x !== '');
+  if (split0.length !== 2) throw new Error('Malformatted input');
+  const split1: string[] = split0[0].split(',').map(x => x.trim()).filter(x => x !== '').toSorted();
+
+  const parsedInput: ListSearchParams = {arr: split1, searchTarget: split0[1]};
+  return parsedInput;
+}

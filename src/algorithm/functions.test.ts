@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { isOutOfBounds, isSorted, numberArrayParser, withDropped, withInserted, withSwapped } from "./functions";
+import { isOutOfBounds, isSorted, numberArrayParser, listSearchParser, withDropped, withInserted, withSwapped } from "./functions";
 
 describe('isSorted', () => {
   test('Sorted array', () => {
@@ -268,5 +268,59 @@ describe('withInserted', () => {
     const result = withInserted(arr, i, value);
 
     expect(result).toEqual(expected);
+  });
+});
+
+describe('listSearchParser', () => {
+  test('Basic case', () => {
+    const input = 'dragon, wyvern,   drake  , kirin; wyvern';
+    const expected: ListSearchParams = {arr: ['dragon', 'drake', 'kirin', 'wyvern'], searchTarget: 'wyvern'};
+    const result = listSearchParser(input);
+
+    expect(result).toEqual(expected);
+  });
+
+  test('Empty items', () => {
+    const input = '  , dragon, wyvern,  ,,,   , , drake  , kirin,; wyvern';
+    const expected: ListSearchParams = {arr: ['dragon', 'drake', 'kirin', 'wyvern'], searchTarget: 'wyvern'};
+    const result = listSearchParser(input);
+
+    expect(result).toEqual(expected);
+  });
+
+  test('Only whitespace', () => {
+    const input = '      ';
+    const throws = () => listSearchParser(input);
+
+    expect(throws).toThrowError();
+  });
+
+  test('With numbers', () => {
+    const input = 'dragon, 1, wyvern, 2, drake, 3, kirin, 4; wyvern';
+    const expected: ListSearchParams = {arr: ['1', '2', '3', '4', 'dragon', 'drake', 'kirin', 'wyvern'], searchTarget: 'wyvern'};
+    const result = listSearchParser(input);
+
+    expect(result).toEqual(expected);
+  });
+
+  test('No search target', () => {
+    const input = 'dragon, wyvern,   drake  , kirin';
+    const throws = () => listSearchParser(input);
+
+    expect(throws).toThrowError();
+  });
+
+  test('Whitespace search target', () => {
+    const input = 'dragon, wyvern,   drake  , kirin;   ';
+    const throws = () => listSearchParser(input);
+
+    expect(throws).toThrowError();
+  });
+
+  test('Multiple search targets', () => {
+    const input = 'dragon, wyvern, drake, kirin; wyvern; drake';
+    const throws = () => listSearchParser(input);
+
+    expect(throws).toThrowError();
   });
 });
