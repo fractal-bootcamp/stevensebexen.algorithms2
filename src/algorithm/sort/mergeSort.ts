@@ -3,13 +3,27 @@ import { isSorted } from "../functions";
 
 interface MergeNode {
   value: number[];
-  first: MergeNode | null;
-  second: MergeNode | null;
-  src: number[];
+  first: MergeNode | undefined;
+  second: MergeNode | undefined;
+  srcFirst: number[];
+  srcSecond: number[];
+}
+
+function renderTree(node: MergeNode, depth: number): number[] {
+  if (depth <= 0) return node.value;
+  const first = node.first ? renderTree(node.first, depth - 1) : node.srcFirst;
+  const second = node.second ? renderTree(node.second, depth - 1) : node.srcSecond;
+  return [...first, ...second];
 }
 
 function generateHistory(rootNode: MergeNode): number[][] {
-  return [];
+  const maxDepth = Math.ceil(Math.log2(rootNode.value.length));
+  const history = Array(maxDepth)
+    .fill(0)
+    .map((_, i) => renderTree(rootNode, i))
+    .toReversed();
+  
+    return history;
 }
 
 function merge(a: number[], b: number[], i: number = 0, j: number = 0, accumulator: number[] = []): number[] {
@@ -26,16 +40,15 @@ function merge(a: number[], b: number[], i: number = 0, j: number = 0, accumulat
 }
 
 function createMergeNode(arr: number[]): MergeNode {
-  const src = [...arr];
   const m = Math.floor((arr.length + 1) / 2);
-  const firstArr = arr.slice(0, m);
-  const secondArr = arr.slice(m);
-  const first = firstArr.length === 1 ? null : createMergeNode(firstArr);
-  const second = secondArr.length === 1 ? null : createMergeNode(secondArr);
+  const srcFirst = arr.slice(0, m);
+  const srcSecond = arr.slice(m);
+  const first = srcFirst.length === 1 ? undefined : createMergeNode(srcFirst);
+  const second = srcSecond.length === 1 ? undefined : createMergeNode(srcSecond);
   // Merge either the sorted subarrays, or the single-element subarrays we temporarily created.
-  const value = merge(first?.value || firstArr, second?.value || secondArr);
+  const value = merge(first?.value || srcFirst, second?.value || srcSecond);
 
-  return {value, first, second, src};
+  return {value, first, second, srcFirst, srcSecond};
 }
 
 function _mergeSort(input: WithHistory<number[]>, depth: number = 0): WithHistory<number[]> {
@@ -43,7 +56,6 @@ function _mergeSort(input: WithHistory<number[]>, depth: number = 0): WithHistor
   if (isSorted(input.value)) return ({value: input.value, history: input.history});
   
   const rootNode = createMergeNode(input.value);
-  console.log(rootNode);
   const value = rootNode.value;
   const history = generateHistory(rootNode);
 
