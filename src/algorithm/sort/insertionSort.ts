@@ -1,7 +1,7 @@
 import { maxDepth } from "~/constants";
 import { isSorted, withDropped, withInserted } from "../functions";
 
-function _insertionSort(input: WithHistory<number[]>, depth: number): WithHistory<number[]> {
+function _insertionSort(input: WithHistory<number[]>, depth: number = 0): WithHistory<number[]> {
   if (depth >= maxDepth) throw new Error('Maximum recursion depth reached.');
   if (isSorted(input.value)) return ({value: input.value, history: input.history});
 
@@ -17,6 +17,6 @@ function _insertionSort(input: WithHistory<number[]>, depth: number): WithHistor
   return _insertionSort({value, history}, depth + 1);
 }
 
-export function insertionSort(src: number[], depth: number = 0): WithHistory<number[]> {
-  return _insertionSort({value: src, history: []}, depth);
+export function insertionSort(src: number[]): WithHistory<number[]> {
+  return _insertionSort({value: src, history: []});
 }

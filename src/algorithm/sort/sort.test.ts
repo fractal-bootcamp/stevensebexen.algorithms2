@@ -2,11 +2,13 @@ import { describe, test, expect } from 'vitest';
 import { bubbleSort } from './bubbleSort';
 import { selectionSort } from './selectionSort';
 import { insertionSort } from './insertionSort';
+import { mergeSort } from './mergeSort';
 
 const algorithms: Record<string, AlgorithmWithH<number[]>>  = {
   'Bubble': bubbleSort,
   'Selection': selectionSort,
-  'Insertion': insertionSort
+  'Insertion': insertionSort,
+  'Merge': mergeSort
 };
 
 function testAlgorithms(name: string, input: number[], expected: number[]) {
