@@ -46,10 +46,10 @@ function normalizedValues(_values: number[]): NormalizedValues {
   return normalized;
 }
 
-interface AlgorithmResultViewerProps<T> {
+interface SortAlgorithmResultViewerProps<T> {
   result: WithHistory<T>
 }
-export default function AlgorithmResultViewer<T>(props: AlgorithmResultViewerProps<T>) {
+export default function SortAlgorithmResultViewer<T>(props: SortAlgorithmResultViewerProps<T>) {
   const [historyVisible, setHistoryVisible] = useState<boolean>(false);
 
   const normalized: NormalizedValues | undefined = props.result.value instanceof Array && props.result.value.every(x => typeof x === 'number')
