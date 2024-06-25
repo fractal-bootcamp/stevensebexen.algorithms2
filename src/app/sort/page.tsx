@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { numberArrayParser } from "~/algorithm/functions";
 import { bubbleSort } from "~/algorithm/sort/bubbleSort";
 import { insertionSort } from "~/algorithm/sort/insertionSort";
+import { mergeSort } from "~/algorithm/sort/mergeSort";
 import { selectionSort } from "~/algorithm/sort/selectionSort";
 import AlgorithmResultViewer from "~/components/AlgorithmResultViewer";
 import AlgorithmRunner from "~/components/AlgorithmRunner";
@@ -13,7 +14,8 @@ import NavBar from "~/components/NavBar";
 const algorithms: Record<string, AlgorithmWithH<number[]>> = {
   'Bubble': bubbleSort,
   'Selection': selectionSort,
-  'Insertion': insertionSort
+  'Insertion': insertionSort,
+  'Merge': mergeSort
 }
 
 export default function Sort() {
