@@ -1,7 +1,7 @@
 'use client'
 
 import { ChangeEvent, useState } from "react";
-import { numberArrayParser } from "~/algorithm/numberArrayParser";
+import { numberArrayParser } from "~/algorithm/functions";
 import { bubbleSort } from "~/algorithm/sort/bubbleSort";
 import { selectionSort } from "~/algorithm/sort/selectionSort";
 import AlgorithmResultViewer from "~/components/AlgorithmResultViewer";

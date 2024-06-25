@@ -1,12 +1,10 @@
 import { maxDepth } from '~/constants';
-import { isSorted } from './functions';
+import { isSorted, withSwapped } from '../functions';
 
 function bubble(arr: number[], depth: number): number[] {
   if (depth >= arr.length - 1) return arr;
   if (arr[depth+1] < arr[depth]) {
-    const result = arr.slice(0, depth)
-      .concat([arr[depth+1], arr[depth]])
-      .concat(arr.slice(depth + 2));
+    const result = withSwapped(arr, depth, depth+1);
     return result;
   }
   return bubble(arr, depth + 1);
