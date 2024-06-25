@@ -3,6 +3,7 @@
 import { ChangeEvent, useState } from "react";
 import { numberArrayParser } from "~/algorithm/functions";
 import { bubbleSort } from "~/algorithm/sort/bubbleSort";
+import { insertionSort } from "~/algorithm/sort/insertionSort";
 import { selectionSort } from "~/algorithm/sort/selectionSort";
 import AlgorithmResultViewer from "~/components/AlgorithmResultViewer";
 import AlgorithmRunner from "~/components/AlgorithmRunner";
@@ -11,7 +12,8 @@ import NavBar from "~/components/NavBar";
 
 const algorithms: Record<string, AlgorithmWithH<number[]>> = {
   'Bubble': bubbleSort,
-  'Selection': selectionSort
+  'Selection': selectionSort,
+  'Insertion': insertionSort
 }
 
 export default function Sort() {
@@ -35,6 +37,7 @@ export default function Sort() {
       setError(false);
     } catch (e) {
       setError(true);
+      console.error(e);
     }
   }
 

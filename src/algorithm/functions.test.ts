@@ -224,19 +224,31 @@ describe('withInserted', () => {
     const arr: number[] = [];
     const i = 0;
     const value = 4;
-    const throws = () => withInserted(arr, i, value);
+    const expected = [4];
+    const result = withInserted(arr, i ,value);
 
-    expect(throws).toThrowError();
+    expect(result).toEqual(expected);
   });
 
-  test('Out of bounds', () => {
+  test('After end', () => {
     const arr = [1, 2, 3];
     const i = 4;
     const value = 4;
-    const throws = () => withInserted(arr, i, value);
+    const expected = [1, 2, 3, 4];
+    const result = withInserted(arr, i, value);
 
-    expect(throws).toThrowError();
+    expect(result).toEqual(expected);
   });
+
+  test('Before beginning', () => {
+    const arr = [1, 2, 3];
+    const i = -4;
+    const value = 4;
+    const expected = [4, 1, 2, 3];
+    const result = withInserted(arr, i, value);
+
+    expect(result).toEqual(expected);
+  })
 
   test('i = 0', () => {
     const arr = [1, 2, 3];

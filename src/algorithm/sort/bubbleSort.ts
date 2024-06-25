@@ -5,7 +5,7 @@ function bubble(arr: number[], depth: number): number[] {
   if (depth >= arr.length - 1) return arr;
   if (arr[depth+1] < arr[depth]) {
     const result = withSwapped(arr, depth, depth+1);
-    return result;
+    return bubble(result, depth+1);
   }
   return bubble(arr, depth + 1);
 }

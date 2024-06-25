@@ -20,6 +20,7 @@ function testAlgorithms(name: string, input: number[], expected: number[]) {
 }
 
 testAlgorithms('Empty array', [], []);
+testAlgorithms('Weird case that came up', [9, 2, -7, 4, -3], [-7, -3, 2, 4, 9]);
 testAlgorithms('Sorted array', [-3, 1, 2, 3, 6, 7, 8], [-3, 1, 2, 3, 6, 7, 8]);
 testAlgorithms('Unsorted array', [5, -3, 0, -2, 1, 7, 9, -5], [-5, -3, -2, 0, 1, 5, 7, 9]);
 testAlgorithms('Array with dupes', [0, 0, 2, 2, 0, -2, -2, 0, 2, 1, -1, 0], [-2, -2, -1, 0, 0, 0, 0, 0, 1, 2, 2, 2]);

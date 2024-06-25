@@ -21,7 +21,8 @@ export function withDropped(arr: number[], i0: number): number[] {
 
 // Returns an array sunch that val has been inserted before i.
 export function withInserted(arr: number[], i: number, value: number): number[] {
-  if (isOutOfBounds(arr, i)) throw new Error('Out of bounds');
+  if (i < 0) return [value, ...arr];
+  if (i >= arr.length) return [...arr, value];
   return [...arr.slice(0, i), value, ...arr.slice(i)];
 }
 
