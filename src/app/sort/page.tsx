@@ -41,7 +41,6 @@ export default function Sort() {
       setError(false);
     } catch (e) {
       setError(true);
-      console.error(e);
     }
   }
 
@@ -61,6 +60,7 @@ export default function Sort() {
         value={input}
       />
       {result && <AlgorithmResultViewer result={result} />}
+      {error && <p className='text-[#e96060]'>Invalid input.</p>}
     </div>
   )
 }
