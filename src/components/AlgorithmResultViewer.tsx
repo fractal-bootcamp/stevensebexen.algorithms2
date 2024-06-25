@@ -25,7 +25,7 @@ function Step<T>(props: StepProps<T>) {
       {
         props.value.map((ele, i) => <div
           key={`${i}${ele}`}
-          className='basis-20 border border-[#aaaaaa] text-center'
+          className='basis-20 text-center'
           style={{backgroundColor: `rgb(${getColorByValue(ele).join()})`}}
         >
           {String(ele)}
