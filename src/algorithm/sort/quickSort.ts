@@ -43,7 +43,6 @@ function createQuickNode(arr: number[], depth: number = 0): QuickNode {
 
 function _quickSort(input: WithHistory<number[]>): WithHistory<number[]> {
   const rootNode = createQuickNode(input.value);
-  console.log(rootNode);
 
   const value = rootNode.value;
   const history = generateHistory(rootNode);
