@@ -11,7 +11,7 @@ export default function AlgorithmResultViewer<T>(props: AlgorithmResultViewerPro
       return (
       <div className='flex gap-1'>
         {
-          value.map(ele => <div className='basis-20 border border-[#aaaaaa] text-center'>{String(ele)}</div>)
+          value.map(ele => <div key={ele} className='basis-20 border border-[#aaaaaa] text-center'>{String(ele)}</div>)
         }
       </div>
       )

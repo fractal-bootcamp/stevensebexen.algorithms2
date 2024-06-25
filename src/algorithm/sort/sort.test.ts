@@ -1,8 +1,10 @@
 import { describe, test, expect } from 'vitest';
 import { bubbleSort } from './bubbleSort';
+import { selectionSort } from './selectionSort';
 
 const algorithms: Record<string, AlgorithmWithH<number[]>>  = {
-  'Bubble': bubbleSort
+  'Bubble': bubbleSort,
+  'Selection': selectionSort
 };
 
 function testAlgorithms(name: string, input: number[], expected: number[]) {
