@@ -5,19 +5,34 @@ import { insertionSort } from './insertionSort';
 import { mergeSort } from './mergeSort';
 import { quickSort } from './quickSort';
 
-const algorithms: Record<string, AlgorithmWithH<number[]>>  = {
-  'Bubble': bubbleSort,
-  'Selection': selectionSort,
-  'Insertion': insertionSort,
-  'Merge': mergeSort,
-  'Quicksort': quickSort
-};
+const algorithms: SortAlgorithm[] = [
+  {
+    name: 'Bubble',
+    fn: bubbleSort
+  },
+  {
+    name: 'Selection',
+    fn: selectionSort
+  },
+  {
+    name: 'Insertion',
+    fn: insertionSort
+  },
+  {
+    name: 'Merge',
+    fn: mergeSort
+  },
+  {
+    name: 'Quicksort',
+    fn: quickSort
+  }
+]
 
 function testAlgorithms(name: string, input: number[], expected: number[]) {
   describe(name, () => {
-    Object.entries(algorithms).map(algorithm => {
-      test(algorithm[0], () => { 
-        expect(algorithm[1](input).value).toEqual(expected);
+    algorithms.map(algorithm => {
+      test(algorithm.name, () => { 
+        expect(algorithm.fn(input).value).toEqual(expected);
       });
     });
   });
